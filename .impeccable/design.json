@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-04T15:16:55Z",
+  "title": "Design System: Ryovia Watch",
+  "extensions": {
+    "colorMeta": {
+      "signal-green": {
+        "role": "primary",
+        "displayName": "Signal Green",
+        "tonalRamp": ["oklch(18% 0.08 148)", "oklch(28% 0.12 148)", "oklch(39% 0.16 148)", "oklch(50% 0.19 148)", "oklch(62% 0.21 148)", "oklch(73% 0.2 148)", "oklch(84% 0.15 148)", "oklch(95% 0.06 148)"]
+      },
+      "canvas-charcoal": {
+        "role": "neutral",
+        "displayName": "Canvas Charcoal",
+        "tonalRamp": ["oklch(15% 0.008 285)", "oklch(23% 0.008 285)", "oklch(34% 0.007 285)", "oklch(46% 0.006 285)", "oklch(59% 0.005 285)", "oklch(72% 0.004 285)", "oklch(84% 0.003 285)", "oklch(95% 0.002 285)"]
+      },
+      "surface-slate": {
+        "role": "neutral",
+        "displayName": "Surface Slate",
+        "tonalRamp": ["oklch(15% 0.012 250)", "oklch(25% 0.012 250)", "oklch(36% 0.011 250)", "oklch(48% 0.01 250)", "oklch(60% 0.009 250)", "oklch(72% 0.007 250)", "oklch(84% 0.005 250)", "oklch(95% 0.002 250)"]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Primary White",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(40% 0 0)", "oklch(53% 0 0)", "oklch(66% 0 0)", "oklch(78% 0 0)", "oklch(89% 0 0)", "oklch(100% 0 0)"]
+      },
+      "text-secondary": {
+        "role": "neutral",
+        "displayName": "Soft Silver",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(50% 0 0)", "oklch(62% 0 0)", "oklch(74% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"]
+      },
+      "active-ink": {
+        "role": "neutral",
+        "displayName": "Active Ink",
+        "tonalRamp": ["oklch(15% 0.01 150)", "oklch(26% 0.01 150)", "oklch(38% 0.009 150)", "oklch(50% 0.008 150)", "oklch(62% 0.007 150)", "oklch(74% 0.005 150)", "oklch(86% 0.003 150)", "oklch(95% 0.002 150)"]
+      },
+      "atmosphere-overlay": {
+        "role": "neutral",
+        "displayName": "Atmosphere Overlay",
+        "tonalRamp": ["rgba(15, 15, 18, 0.82)", "rgba(31, 31, 35, 0.82)", "rgba(55, 55, 60, 0.82)", "rgba(83, 83, 89, 0.82)", "rgba(116, 116, 122, 0.82)", "rgba(153, 153, 159, 0.82)", "rgba(195, 195, 200, 0.82)", "rgba(239, 239, 242, 0.82)"]
+      },
+      "player-overlay": {
+        "role": "neutral",
+        "displayName": "Player Overlay",
+        "tonalRamp": ["rgba(4, 5, 7, 0.83)", "rgba(23, 25, 29, 0.83)", "rgba(49, 52, 57, 0.83)", "rgba(79, 83, 89, 0.83)", "rgba(114, 118, 124, 0.83)", "rgba(152, 156, 162, 0.83)", "rgba(194, 198, 203, 0.83)", "rgba(239, 241, 243, 0.83)"]
+      },
+      "progress-track": {
+        "role": "neutral",
+        "displayName": "Progress Track",
+        "tonalRamp": ["rgba(38, 38, 38, 0.3)", "rgba(66, 66, 66, 0.3)", "rgba(96, 96, 96, 0.3)", "rgba(126, 126, 126, 0.3)", "rgba(158, 158, 158, 0.3)", "rgba(190, 190, 190, 0.3)", "rgba(222, 222, 222, 0.3)", "rgba(255, 255, 255, 0.3)"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Current Title", "purpose": "The current anime title and no other routine utility copy." },
+      "body": { "displayName": "Compact Body", "purpose": "Descriptions and card titles." },
+      "control": { "displayName": "Control", "purpose": "Episode numbers and ordinary interface controls." },
+      "label": { "displayName": "Utility Label", "purpose": "Server, language, chip, and filter labels." },
+      "micro": { "displayName": "Micro Metadata", "purpose": "Timecodes, counts, scores, and tertiary navigation labels." }
+    },
+    "shadows": [
+      { "name": "play-medallion", "value": "0 12px 30px rgba(0, 0, 0, 0.45)", "purpose": "Lifts the central visual play marker above the dark preview." },
+      { "name": "scrolled-navigation", "value": "1px 4px 10px black", "purpose": "Separates the fixed navigation from content after scroll." }
+    ],
+    "motion": [
+      { "name": "micro-state", "value": "100ms ease-in-out", "purpose": "Fast hover and compact control feedback." },
+      { "name": "standard-state", "value": "300ms ease-in-out", "purpose": "Navigation and ordinary color transitions." },
+      { "name": "watch-reveal", "value": "450ms ease-out", "purpose": "Single restrained fade for the watch surface on entry." }
+    ],
+    "breakpoints": [
+      { "name": "detail-stack", "value": "1400px" },
+      { "name": "player-first", "value": "1100px" },
+      { "name": "full-width-media", "value": "1000px" },
+      { "name": "compact-watch", "value": "580px" },
+      { "name": "compact-navigation", "value": "700px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Episode Tile",
+      "kind": "button",
+      "refersTo": "episode-tile",
+      "description": "A compact tabular-number control for the dense episode grid.",
+      "html": "<button class=\"ds-episode-tile\" type=\"button\">07</button>",
+      "css": ".ds-episode-tile { width: 52px; padding: 5px; border: 0; border-radius: 4px; background: #343a40; color: #fff; font: 400 16px 'Trebuchet MS', sans-serif; font-variant-numeric: tabular-nums; cursor: pointer; transition: color 100ms ease-in-out, background-color 100ms ease-in-out; } .ds-episode-tile:hover { color: rgb(83, 255, 134); } .ds-episode-tile:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Selected Episode Tile",
+      "kind": "button",
+      "refersTo": "episode-tile-selected",
+      "description": "The unambiguous green selected state in the episode grid.",
+      "html": "<button class=\"ds-episode-selected\" type=\"button\" aria-pressed=\"true\">01</button>",
+      "css": ".ds-episode-selected { width: 52px; padding: 5px; border: 0; border-radius: 4px; background: rgb(83, 255, 134); color: #101412; font: 400 16px 'Trebuchet MS', sans-serif; font-variant-numeric: tabular-nums; cursor: pointer; } .ds-episode-selected:hover { filter: brightness(0.94); } .ds-episode-selected:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } .ds-episode-selected:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Server Chip",
+      "kind": "chip",
+      "refersTo": "server-chip",
+      "description": "A compact local-selection chip; its label carries no provider or playback promise.",
+      "html": "<button class=\"ds-server-chip\" type=\"button\">HD-1</button>",
+      "css": ".ds-server-chip { display: inline-block; padding: 6px 15px; border: 0; border-radius: 20px; background: #343a40; color: #fff; font: 400 13px 'Trebuchet MS', sans-serif; cursor: pointer; transition: color 100ms ease-in-out, background-color 100ms ease-in-out; } .ds-server-chip:hover { color: rgb(83, 255, 134); } .ds-server-chip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; } .ds-server-chip:active, .ds-server-chip[aria-pressed='true'] { background: rgb(83, 255, 134); color: #101412; }"
+    },
+    {
+      "name": "Player Preview Shell",
+      "kind": "custom",
+      "refersTo": "player-play-medallion",
+      "description": "An inert visual player composition with atmospheric art, focal marker, and utility chrome.",
+      "html": "<div class=\"ds-player-shell\" aria-label=\"Visual player preview\"><span class=\"ds-player-medallion\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" fill=\"currentColor\"><path d=\"M8 5v14l11-7z\"/></svg></span><div class=\"ds-player-controls\" aria-hidden=\"true\"><div class=\"ds-player-track\"><span></span></div><div class=\"ds-player-row\"><span>▶</span><span>00:00 / 24:00</span><b>CC</b></div></div></div>",
+      "css": ".ds-player-shell { position: relative; width: min(720px, 100%); aspect-ratio: 16 / 9; overflow: hidden; color: #fff; background: radial-gradient(circle at 68% 34%, rgba(83, 255, 134, 0.15), transparent 27%), linear-gradient(rgba(4, 5, 7, 0.83), rgba(4, 5, 7, 0.83)), linear-gradient(135deg, #343a40, #181a1d); font-family: 'Trebuchet MS', sans-serif; } .ds-player-medallion { position: absolute; top: 50%; left: 50%; width: 72px; height: 72px; display: grid; place-items: center; transform: translate(-50%, -50%); border-radius: 50%; color: #111512; background: rgb(83, 255, 134); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); } .ds-player-medallion svg { margin-left: 4px; } .ds-player-controls { position: absolute; right: 18px; bottom: 14px; left: 18px; } .ds-player-track { height: 4px; margin-bottom: 12px; background: rgba(255, 255, 255, 0.3); } .ds-player-track span { display: block; width: 8%; height: 100%; background: rgb(83, 255, 134); } .ds-player-row { display: flex; align-items: center; gap: 16px; font-size: 12px; } .ds-player-row b { margin-left: auto; font-size: 12px; } .ds-player-shell:focus-within { outline: 2px solid #fff; outline-offset: 3px; } @media (max-width: 580px) { .ds-player-shell { aspect-ratio: 4 / 3; } .ds-player-medallion { width: 58px; height: 58px; } .ds-player-row { gap: 12px; } }"
+    },
+    {
+      "name": "Description Toggle",
+      "kind": "button",
+      "description": "A low-chrome inline disclosure control appended directly to body copy.",
+      "html": "<button class=\"ds-description-toggle\" type=\"button\">[ More ]</button>",
+      "css": ".ds-description-toggle { padding: 0 0 0 6px; border: 0; background: transparent; color: rgb(83, 255, 134); font: 400 14px 'Trebuchet MS', sans-serif; cursor: pointer; } .ds-description-toggle:hover { color: #fff; } .ds-description-toggle:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }"
+    },
+    {
+      "name": "Navigation Search",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "A compact capsule search field that can move into a full-width floating row.",
+      "html": "<label class=\"ds-search\"><span class=\"ds-search-label\">Search anime</span><input type=\"search\" placeholder=\"Search anime...\"><svg aria-hidden=\"true\" viewBox=\"0 0 24 24\" width=\"18\" height=\"18\"><path fill=\"currentColor\" d=\"m21 19.6-5.2-5.2a8 8 0 1 0-1.4 1.4l5.2 5.2L21 19.6ZM4 10a6 6 0 1 1 12 0 6 6 0 0 1-12 0Z\"/></svg></label>",
+      "css": ".ds-search { position: relative; display: block; width: min(250px, 100%); height: 40px; color: rgb(83, 255, 134); font-family: 'Trebuchet MS', sans-serif; } .ds-search-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .ds-search input { width: 100%; height: 100%; padding: 0 56px 0 20px; border: 0; border-radius: 50px; outline: 0; background: #343a40; color: rgb(83, 255, 134); font: inherit; transition: box-shadow 300ms ease-in-out; } .ds-search svg { position: absolute; top: 11px; right: 20px; pointer-events: none; } .ds-search input:hover { background: #3d444b; } .ds-search input:focus-visible { box-shadow: 0 0 0 2px #fff, 0 0 0 5px #242428; }"
+    },
+    {
+      "name": "Anime Card",
+      "kind": "card",
+      "refersTo": "anime-card",
+      "description": "A dense poster-led recommendation card with a compact slate metadata footer.",
+      "html": "<article class=\"ds-anime-card\"><div class=\"ds-anime-art\"><span class=\"ds-anime-badge\">PG-13</span></div><div class=\"ds-anime-meta\"><strong>Beyond Journey's End</strong><small>24 min · TV</small></div></article>",
+      "css": ".ds-anime-card { width: 180px; overflow: hidden; background: #343a40; color: #fff; font-family: 'Trebuchet MS', sans-serif; } .ds-anime-art { position: relative; height: 250px; background: linear-gradient(0deg, #343a40 8%, rgba(52, 58, 64, 0.76) 16%, rgba(52, 58, 64, 0.41) 24%, transparent 32%), radial-gradient(circle at 70% 28%, rgba(83, 255, 134, 0.28), transparent 24%), linear-gradient(145deg, #67736b, #202428 62%); } .ds-anime-art::after { content: '▶'; position: absolute; inset: 0; display: grid; place-items: center; background: rgba(52, 58, 64, 0.49); color: #fff; font-size: 54px; opacity: 0; backdrop-filter: blur(10px); transition: opacity 300ms ease-in-out; } .ds-anime-badge { position: absolute; z-index: 1; bottom: 10px; left: 10px; padding: 1px 4px; border-radius: 2px 0 0 2px; background: #ffdd95; color: #242428; font-size: 10px; font-weight: 700; } .ds-anime-meta { display: grid; gap: 5px; padding: 0 10px 10px; font-size: 14px; } .ds-anime-meta strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-anime-meta small { color: #aaa; } .ds-anime-card:hover .ds-anime-art::after { opacity: 1; } .ds-anime-card:focus-within { outline: 2px solid rgb(83, 255, 134); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Neon Screening Room",
+    "overview": "Ryovia Watch feels like a compact digital screening room: the frame is nearly black, the anime key art spills into the surrounding atmosphere as a deep blur, and a single saturated green behaves like a status lamp. The interface stays useful and dense instead of cinematic for its own sake; the current player region, episode grid, controls, and metadata remain immediately scannable.\n\nThe player leads the responsive experience. Supporting controls are terse, close to the content they affect, and built from familiar compact geometry. The player itself is an inert visual shell: its play glyph, progress track, timecode, server labels, and language labels communicate composition and state styling only, never playback availability, provider behavior, or a network contract.",
+    "keyCharacteristics": [
+      "Charcoal digital surfaces with minimal separation lines.",
+      "Saturated green reserved for active state, focus, and high-value emphasis.",
+      "Blurred key art used as atmosphere behind the primary viewing region.",
+      "Dense episode and utility controls with tabular numerals.",
+      "Player-first reflow from desktop rail layout to stacked mobile flow.",
+      "Compact Trebuchet typography that favors utility over editorial display."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "Signal Green is the only system-wide status accent; do not introduce competing action colors.", "section": "colors" },
+      { "name": "The Image Supplies Color Rule", "body": "Poster art may create atmosphere, but UI chrome remains charcoal, white, and Signal Green.", "section": "colors" },
+      { "name": "The Utility First Rule", "body": "Keep controls and metadata compact; large typography belongs only to the current title and section hierarchy.", "section": "typography" },
+      { "name": "The Player First Rule", "body": "When horizontal space collapses, preserve the player before episode selection and supporting metadata.", "section": "layout" },
+      { "name": "The Dense Rail Rule", "body": "Episode numbers should remain compact, evenly packed, and vertically scrollable before becoming oversized controls.", "section": "layout" },
+      { "name": "The Atmospheric Depth Rule", "body": "Use image blur and tonal overlays for environmental depth; reserve explicit shadows for focal or fixed elements.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Signal Green only for selected, focused, progress, and high-value emphasis states.",
+      "Do let key art tint the atmosphere while protecting legibility with charcoal blur overlays.",
+      "Do preserve dense, tabular episode numbering and compact utility labels.",
+      "Do reorder to a player-first stacked flow on narrow screens.",
+      "Do describe player and server UI as a visual shell unless behavior is implemented in a separately defined scope."
+    ],
+    "donts": [
+      "Don't imply streaming, provider, subtitle, dub, or playback behavior from this visual system alone.",
+      "Don't add gradients, accent colors, or decorative glow to interface chrome beyond imagery-derived atmosphere.",
+      "Don't inflate controls into spacious cards or replace the dense grid with oversized tiles.",
+      "Don't use heavy shadows across ordinary surfaces; keep depth tonal and image-led.",
+      "Don't introduce ornate display typography that competes with the compact utility hierarchy."
+    ]
+  }
+}
