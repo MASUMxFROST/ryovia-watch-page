@@ -1,3 +1,14 @@
+Ryovia Watch Page — Project Purpose
+
+This repository contains only the Ryovia watch-page user interface. It is
+published for developers and designers who want to study, redesign, and improve
+the page experience. It does not include a video playback backend, streaming
+implementation, private API logic, provider integration, or hosted media.
+
+This purpose notice does not replace or restrict the open-source license below.
+Third-party names, artwork, and other assets remain the property of their
+respective owners and are not relicensed by this repository.
+
 MIT License
 
 Copyright (c) 2023 Manj0tBenipal
