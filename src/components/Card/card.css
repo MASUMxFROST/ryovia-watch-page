@@ -43,6 +43,8 @@
   transition: transform 220ms ease;
 }
 
+.card-poster-placeholder { display: grid; place-items: center; height: 100%; padding: 20px; color: #b4c7bc; text-align: center; font-size: 15px; line-height: 1.5; background: linear-gradient(140deg, #2c4135, #1b2420); }
+
 .anime-card:hover .anime-card-img-wrapper img,
 .anime-card:focus-visible .anime-card-img-wrapper img {
   transform: scale(1.035);

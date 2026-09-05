@@ -54,7 +54,7 @@ export default function NavSidebar({ sidebarIsOpen, setSidebarIsOpen }) {
         aria-label="Navigation menu"
       >
         <div className="navigation-drawer-header">
-          <a className="brand-logo-window" href="/watch" aria-label="Ryovia home" onClick={() => setSidebarIsOpen(false)}>
+          <a className="brand-logo-window" href="/" aria-label="Ryovia home" onClick={() => setSidebarIsOpen(false)}>
             <img className="brand-logo-image" src={logo.src} alt="Ryovia" />
           </a>
           <button type="button" className="nav-icon-button" aria-label="Close navigation menu" onClick={() => setSidebarIsOpen(false)}>
@@ -63,13 +63,13 @@ export default function NavSidebar({ sidebarIsOpen, setSidebarIsOpen }) {
         </div>
         <p className="navigation-drawer-label">YOUR NEXT ADVENTURE</p>
         <nav className="navigation-link-list" aria-label="Explore Ryovia">
-          <a href="#watch" onClick={() => setSidebarIsOpen(false)}><FaPlay aria-hidden="true" /><span>Watch anime<small>Continue the journey</small></span></a>
-          <a href="#recommendations" onClick={() => setSidebarIsOpen(false)}><FaCompass aria-hidden="true" /><span>Discover<small>Explore this collection</small></span></a>
+          <a href="/watch" onClick={() => setSidebarIsOpen(false)}><FaPlay aria-hidden="true" /><span>Watch anime<small>Continue the journey</small></span></a>
+          <a href="/" onClick={() => setSidebarIsOpen(false)}><FaCompass aria-hidden="true" /><span>Discover<small>Explore the anime catalog</small></span></a>
         </nav>
         <div className="navigation-drawer-note">
-          <span>Ryovia preview</span>
+          <span>Ryovia</span>
           <p>A little closer to your next favorite anime.</p>
-          <button type="button" onClick={() => setSidebarIsOpen(false)}><FaArrowLeft aria-hidden="true" /> Back to watching</button>
+          <button type="button" onClick={() => setSidebarIsOpen(false)}><FaArrowLeft aria-hidden="true" /> Back to browsing</button>
         </div>
       </div>
     </div>

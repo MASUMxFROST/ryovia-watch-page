@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import "./genre.css";
-import { genreList as genres } from "../../data/watch-page";
+
+export const genres = ["Action", "Adventure", "Comedy", "Drama", "Fantasy", "Mystery", "Romance", "Sci-Fi", "Slice of Life", "Sports", "Supernatural", "Thriller", "Horror", "Mecha", "Music", "Psychological", "Mahou Shoujo", "Ecchi"];
 
 export default function Genre() {
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -12,7 +14,7 @@ export default function Genre() {
       <h2 id="genre-heading">Browse genres</h2>
       <div className="genre-list">
         {list.map((genre) => (
-          <a key={genre} href="#recommendations">{genre}</a>
+          <Link key={genre} href={`/?${new URLSearchParams({ genre })}`}>{genre}</Link>
         ))}
       </div>
       <button

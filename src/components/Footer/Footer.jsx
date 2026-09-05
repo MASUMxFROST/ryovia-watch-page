@@ -7,16 +7,16 @@ export default function Footer() {
   return (
     <footer className="footer-container">
       <div className="footer-inner">
-        <a className="brand-logo-window footer-logo" href="/watch" aria-label="Ryovia home">
+        <a className="brand-logo-window footer-logo" href="/" aria-label="Ryovia home">
           <img src={logo.src} className="brand-logo-image" alt="Ryovia" />
         </a>
         <div className="footer-copy">
           <p>Your next adventure starts here.</p>
-          <span>Ryovia · Anime interface preview</span>
+          <span>Ryovia · Discover anime with AniList</span>
         </div>
         <nav className="footer-links" aria-label="Footer navigation">
-          <a href="#recommendations">Discover anime</a>
-          <a href="#watch">Back to top <FaArrowUp aria-hidden="true" /></a>
+          <a href="/">Discover anime</a>
+          <a href="#top" onClick={(event) => { event.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>Back to top <FaArrowUp aria-hidden="true" /></a>
         </nav>
       </div>
     </footer>

@@ -20,6 +20,10 @@
 }
 
 .mouse-over-card-wrapper p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 6px 0 8px;
   color: #b1bdb5;
   font-size: 12px;

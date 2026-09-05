@@ -1,5 +1,5 @@
 import "../main.css";
-import "../components/AnimeInfo/AnimeInfo.css";
+import "../views/WatchAnime/watch-anime.css";
 import Nav from "../Layouts/Nav";
 import logo from "../media/ryovia-logo.png";
 

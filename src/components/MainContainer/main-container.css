@@ -13,6 +13,12 @@
 .sidebar-wrapper {
   min-width: 0;
 }
+.recommendation-attribution { margin-top: 18px; color: #879b8f; font-size: 11px; }
+.recommendation-attribution a, .recommendations-empty a { color: var(--theme); }
+.recommendations-empty { padding: 20px; background: #ffffff04; border: 1px solid #ffffff0b; border-radius: 7px; }
+.recommendations-empty h2 { font-size: 20px; }
+.recommendations-empty p { margin: 8px 0 15px; color: #a4b2aa; font-size: 13px; }
+.recommendations-empty a { font-size: 13px; text-decoration: none; }
 
 .collection-heading {
   display: flex;

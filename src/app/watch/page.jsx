@@ -1,9 +1,4 @@
-import WatchAnime from "../../views/WatchAnime/WatchAnime";
-
-export const metadata = {
-  title: "Watch anime",
-  robots: { index: false, follow: true },
-};
+import { redirect } from "next/navigation";
 export default function WatchPage() {
-  return <WatchAnime />;
+  redirect("/watch/154587");
 }

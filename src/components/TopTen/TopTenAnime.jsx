@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import "./top-ten.css";
 import LazyImage from "../../utils/LazyImage";
@@ -20,8 +21,8 @@ export default function TopTenAnime({ data = [] }) {
   return (
     <section className="top-ten-wrapper" aria-labelledby="popular-anime-heading">
       <div className="top-ten-header">
-        <h2 id="popular-anime-heading">Popular anime</h2>
-        <div className="top-ten-tabs" aria-label="Sort popular anime">
+        <h2 id="popular-anime-heading">From these recommendations</h2>
+        <div className="top-ten-tabs" aria-label="Sort recommendations">
           {sortOptions.map(({ value, label }) => (
             <button
               type="button"
@@ -37,32 +38,32 @@ export default function TopTenAnime({ data = [] }) {
       </div>
       <ol className="popular-anime-list">
         {sortedList.map((anime, index) => {
-          const title = anime.title_english || anime.title;
+          const title = anime.title;
           return (
             <li key={anime.id}>
               <span className={`rank ${index < 3 ? "top-three" : ""}`}>
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <a href={`#anime-${anime.id}`} className="top-10-item">
-                <LazyImage
-                  src={anime.images.webp.image_url}
+              <Link href={`/watch/${anime.id}`} className="top-10-item">
+                {anime.poster ? <LazyImage
+                  src={anime.poster}
                   alt={`${title} poster`}
                   isAnimated={false}
-                />
+                /> : <span className="top-ten-poster-placeholder" aria-hidden="true" />}
                 <div className="popular-anime-details">
                   <span className="popular-anime-title">{title}</span>
                   <div className="episode-info">
-                    <span>{anime.type}</span>
+                    <span>{anime.format?.replaceAll("_", " ") || "Anime"}</span>
                     <span>·</span>
-                    <span>{anime.episodes} eps</span>
+                    <span>{anime.episodes ? `${anime.episodes} eps` : "TBA"}</span>
                     {anime.score != null && (
                       <span className="popular-anime-score">
-                        <FaStar aria-hidden="true" />{anime.score.toFixed(2)}
+                        <FaStar aria-hidden="true" />{anime.score.toFixed(1)}
                       </span>
                     )}
                   </div>
                 </div>
-              </a>
+              </Link>
             </li>
           );
         })}

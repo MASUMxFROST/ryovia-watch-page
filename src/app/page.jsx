@@ -1,9 +1,10 @@
-import WatchAnime from "../views/WatchAnime/WatchAnime";
+import { Suspense } from "react";
+import Discover from "../views/Discover/Discover";
 
 export const metadata = {
-  title: "Watch anime",
+  title: "Discover anime",
 };
 
 export default function Home() {
-  return <WatchAnime />;
+  return <Suspense fallback={<main className="watch-page">Loading the anime catalog…</main>}><Discover /></Suspense>;
 }

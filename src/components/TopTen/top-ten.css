@@ -94,6 +94,7 @@
   border-radius: 4px;
   object-fit: cover;
 }
+.top-ten-poster-placeholder { display: block; flex: 0 0 40px; width: 40px; height: 54px; border-radius: 4px; background: #2c3a32; }
 
 .popular-anime-details {
   flex: 1;
