@@ -1,35 +1,26 @@
 .share-app {
-  padding: 40px;
+  display: flex;
+  align-items: center;
   gap: 10px;
+  padding: 12px 24px;
+  color: #9aa69e;
+  font-size: 12px;
+}
 
-}
 .share-app p {
-  margin: 0 !important;
+  margin: 0;
+  line-height: 1.4;
 }
+
 .share-app .primary {
   color: var(--theme);
+  font-size: 13px;
   font-weight: 600;
 }
+
 .share-app img {
-  width: 70px;
-  
-  height: 70px;
+  width: 36px;
+  height: 36px;
   object-fit: cover;
   border-radius: 50%;
-}
-@media screen and (max-width: 600px) {
-  .share-app img {
-    width: 50px;
-    height: 50px;
-  }
-  .share-app .primary {
-    font-size: 15px;
-    font-weight: 400;
-  }
-  .share-app p {
-    font-size: 14px;
-  }
-  .share-app {
-    padding: 20px 10px;
-  }
 }

@@ -1,112 +1,137 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { FaBars, FaChevronRight, FaSearch, FaTimes } from "react-icons/fa";
+import logo from "../../media/ryovia-logo.png";
+import { recommendedAnime, watchPageAnime } from "../../data/watch-page";
 import "./navbar.css";
-import logo from "../../media/logo.png";
-import { FaSearch, FaBars } from "react-icons/fa";
 
-import Actions from "./Actions";
-import SocialLinks from "./SocialLinks";
+const catalog = [
+  { title: watchPageAnime.title, poster: watchPageAnime.poster, href: "#watch", detail: "28 episodes" },
+  ...recommendedAnime.map((anime) => ({
+    title: anime.title,
+    poster: anime.images.webp.image_url,
+    href: `#anime-${anime.id}`,
+    detail: `${anime.type} · ${anime.episodes} episodes`,
+  })),
+];
 
-export default function NavBar(props) {
-  const [searchForm, setSearchForm] = useState({ name: "" });
-  const [floatSearchIsVisible, setFloatSearchIsVisible] = useState(false);
-  const setSidebarIsOpen = props.setSidebarIsOpen;
-  const pageIsScrolled = props.isScrolled;
-  function handleSearchForm(event) {
-    const { name, value } = event.target;
-    setSearchForm((prev) => ({ ...prev, [name]: value }));
+export default function Navbar({ sidebarIsOpen, setSidebarIsOpen }) {
+  const [query, setQuery] = useState("");
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [resultsOpen, setResultsOpen] = useState(false);
+  const searchRef = useRef(null);
+  const inputRef = useRef(null);
+  const searchToggleRef = useRef(null);
+  const matches = catalog.filter((anime) =>
+    anime.title.toLowerCase().includes(query.trim().toLowerCase())
+  );
+
+  useEffect(() => {
+    function closeOutside(event) {
+      if (!searchRef.current?.contains(event.target) && !searchToggleRef.current?.contains(event.target)) {
+        setResultsOpen(false);
+        setMobileSearchOpen(false);
+      }
+    }
+    document.addEventListener("pointerdown", closeOutside);
+    return () => document.removeEventListener("pointerdown", closeOutside);
+  }, []);
+
+  useEffect(() => {
+    if (mobileSearchOpen) inputRef.current?.focus();
+  }, [mobileSearchOpen]);
+
+  function closeSearch() {
+    setResultsOpen(false);
+    setMobileSearchOpen(false);
+    if (mobileSearchOpen) searchToggleRef.current?.focus();
   }
-  function submitSearch(event) {
-    event.preventDefault();
-    setSearchForm({ name: "" });
-    setFloatSearchIsVisible(false);
-  }
+
   return (
-    <>
-      <nav
-        className={`navigation-bar a-center d-flex ${
-          pageIsScrolled ? "dark" : "transparent"
-        } trans-03`}
-      >
-        <div className="menu-group a-center d-flex">
-          <FaBars
-            size={20}
-            className="burger-icon trans-05"
+    <header className="navigation-bar">
+      <nav className="navigation-inner" aria-label="Main navigation">
+        <div className="menu-group">
+          <button
+            type="button"
+            className="nav-icon-button"
+            aria-label="Open navigation menu"
+            aria-controls="navigation-drawer"
+            aria-expanded={sidebarIsOpen}
             onClick={() => setSidebarIsOpen(true)}
-          />
-          <div className="logo-wrapper a-center d-flex">
-            <button
-              type="button"
-              className="logo-button"
-              aria-label="Back to top"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              <img
-                src={logo.src}
-                className="logo"
-                alt="Ryovia"
-              />
-            </button>
-          </div>
-        </div>
-        <form className="search-wrapper" onSubmit={submitSearch}>
-          <input
-            style={
-              pageIsScrolled
-                ? { backgroundColor: "var(--grey-dark)", color: "var(--theme)" }
-                : { backgroundColor: "white", color: "black" }
-            }
-            type="text"
-            className="search-text f-poppins  trans-03"
-            placeholder="Search anime..."
-            name="name"
-            value={searchForm?.name}
-            onChange={(e) => handleSearchForm(e)}
-          />
-          <button type="submit" className="search-submit" aria-label="Search anime">
-            <FaSearch
-              className="search-icon search-icons trans-03"
-              size={20}
-              style={
-                pageIsScrolled
-                  ? {
-                      color: "var(--theme)",
-                    }
-                  : { color: "black" }
-              }
-            />
+          >
+            <FaBars aria-hidden="true" />
           </button>
+          <a className="brand-logo-window" href="/watch" aria-label="Ryovia home">
+            <img src={logo.src} alt="Ryovia" className="brand-logo-image" />
+          </a>
+        </div>
 
-          {/* <FaFilter className="filter-icon search-icons" size={20} color="grey" /> */}
-        </form>
-        <SocialLinks />
-        <Actions isInSidebar={false} />
-        <div className="user-profile-nots a-center j-center d-flex trans-c-03">
-          <FaSearch
-            onClick={() => {
-              setFloatSearchIsVisible((prev) => !prev);
+        <div className="navigation-page-links">
+          <a href="#watch" className="is-current" aria-current="page">Watch</a>
+          <a href="#recommendations">Discover</a>
+        </div>
+
+        <form
+          ref={searchRef}
+          className={`nav-search ${mobileSearchOpen ? "is-mobile-open" : ""}`}
+          role="search"
+          onSubmit={(event) => {
+            event.preventDefault();
+            setResultsOpen(true);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Escape") {
+              event.stopPropagation();
+              closeSearch();
+            }
+          }}
+        >
+          <input
+            ref={inputRef}
+            id="anime-search"
+            type="search"
+            autoComplete="off"
+            aria-label="Search anime in this collection"
+            aria-controls="anime-search-results"
+            placeholder="Search anime..."
+            value={query}
+            onFocus={() => setResultsOpen(true)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setResultsOpen(true);
             }}
           />
-        </div>
-      </nav>
-      {floatSearchIsVisible && (
-        <form className="floating-search-wrapper" onSubmit={submitSearch}>
-          <input
-            type="text"
-            className="search-text f-poppins"
-            placeholder="Search anime..."
-            name="name"
-            value={searchForm?.name}
-            onChange={(e) => handleSearchForm(e)}
-          />
-          <button type="submit" className="search-submit" aria-label="Search anime">
-            <FaSearch
-              className="search-icon search-icons"
-              size={20}
-              color="black"
-            />
+          <button type="submit" className="nav-search-submit" aria-label="Search anime">
+            <FaSearch aria-hidden="true" />
           </button>
+          {resultsOpen && query.trim() && (
+            <div id="anime-search-results" className="nav-search-results">
+              <p className="search-results-label" role="status">
+                {matches.length ? `${matches.length} in this collection` : "No matches in this collection"}
+              </p>
+              {matches.map((anime) => (
+                <a key={anime.title} href={anime.href} onClick={closeSearch}>
+                  <img src={anime.poster} alt="" />
+                  <span><strong>{anime.title}</strong><small>{anime.detail}</small></span>
+                  <FaChevronRight aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          )}
         </form>
-      )}
-    </>
+
+        <span className="navigation-preview"><span aria-hidden="true" />Preview</span>
+        <button
+          ref={searchToggleRef}
+          type="button"
+          className="nav-icon-button mobile-search-toggle"
+          aria-label={mobileSearchOpen ? "Close search" : "Open search"}
+          aria-controls="anime-search"
+          aria-expanded={mobileSearchOpen}
+          onClick={() => setMobileSearchOpen((open) => !open)}
+        >
+          {mobileSearchOpen ? <FaTimes aria-hidden="true" /> : <FaSearch aria-hidden="true" />}
+        </button>
+      </nav>
+    </header>
   );
 }

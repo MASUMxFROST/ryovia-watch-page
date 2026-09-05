@@ -1,94 +1,75 @@
-import React from "react";
-import { FaChevronLeft, FaComments } from "react-icons/fa";
+import React, { useEffect, useRef } from "react";
+import { FaArrowLeft, FaCompass, FaPlay, FaTimes } from "react-icons/fa";
+import logo from "../../media/ryovia-logo.png";
 import "./nav-sidebar.css";
-import Actions from "../Navbar/Actions";
-export default function NavSidebar(props) {
-  function scrollToTop() {
-    window.scrollTo({ top: 0 });
-  }
+
+export default function NavSidebar({ sidebarIsOpen, setSidebarIsOpen }) {
+  const drawerRef = useRef(null);
+
+  useEffect(() => {
+    if (!sidebarIsOpen) return;
+    const previousFocus = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    drawerRef.current?.querySelector("button")?.focus();
+
+    function handleKeyDown(event) {
+      if (event.key === "Escape") setSidebarIsOpen(false);
+      if (event.key !== "Tab") return;
+      const focusable = drawerRef.current?.querySelectorAll("a[href], button:not([disabled])");
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previousFocus?.focus();
+    };
+  }, [sidebarIsOpen, setSidebarIsOpen]);
+
+  if (!sidebarIsOpen) return null;
+
   return (
     <div
-      className="navigation-sidebar f-poppins"
-      style={{ zIndex: props.sidebarIsOpen ? 100 : -1 }}
-      onClick={() => props.setSidebarIsOpen(false)}
+      className="navigation-sidebar"
+      onClick={(event) => {
+        if (event.target === event.currentTarget) setSidebarIsOpen(false);
+      }}
     >
       <div
-        className="navigation-list d-flex"
-        style={{
-          transform: props.sidebarIsOpen
-            ? "translateX(250px)"
-            : "translateX(-250px)",
-        }}
+        ref={drawerRef}
+        id="navigation-drawer"
+        className="navigation-list"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
       >
-        <div className="button-group d-flex-fd-column">
-          <div
-            className="d-flex a-center j-center close-menu"
-            style={{ width: "60%" }}
-            onClick={() => props.setSidebarIsOpen()}
-          >
-            <FaChevronLeft size={12} />
-            Close Menu
-          </div>
-          <Actions isInSidebar={true} />
-          <button type="button" className="community-item d-flex a-center j-center">
-            <FaComments size={14} />
-            Community
+        <div className="navigation-drawer-header">
+          <a className="brand-logo-window" href="/watch" aria-label="Ryovia home" onClick={() => setSidebarIsOpen(false)}>
+            <img className="brand-logo-image" src={logo.src} alt="Ryovia" />
+          </a>
+          <button type="button" className="nav-icon-button" aria-label="Close navigation menu" onClick={() => setSidebarIsOpen(false)}>
+            <FaTimes aria-hidden="true" />
           </button>
         </div>
-
-        <div className="navigation-link-list">
-          <ul>
-            <li>
-              <a onClick={() => scrollToTop()} href="#watch">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#recommendations">
-                Most Popular
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => scrollToTop()}
-                href="#recommendations"
-              >
-                Movies
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => scrollToTop()}
-                href="#recommendations"
-              >
-                TV Series
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => scrollToTop()}
-                href="#recommendations"
-              >
-                OVAs
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => scrollToTop()}
-                href="#recommendations"
-              >
-                ONAs
-              </a>
-            </li>
-            <li>
-              <a
-                onClick={() => scrollToTop()}
-                href="#recommendations"
-              >
-                Specials
-              </a>
-            </li>
-          </ul>
+        <p className="navigation-drawer-label">YOUR NEXT ADVENTURE</p>
+        <nav className="navigation-link-list" aria-label="Explore Ryovia">
+          <a href="#watch" onClick={() => setSidebarIsOpen(false)}><FaPlay aria-hidden="true" /><span>Watch anime<small>Continue the journey</small></span></a>
+          <a href="#recommendations" onClick={() => setSidebarIsOpen(false)}><FaCompass aria-hidden="true" /><span>Discover<small>Explore this collection</small></span></a>
+        </nav>
+        <div className="navigation-drawer-note">
+          <span>Ryovia preview</span>
+          <p>A little closer to your next favorite anime.</p>
+          <button type="button" onClick={() => setSidebarIsOpen(false)}><FaArrowLeft aria-hidden="true" /> Back to watching</button>
         </div>
       </div>
     </div>

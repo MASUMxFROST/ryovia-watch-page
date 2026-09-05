@@ -1,38 +1,17 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, Suspense } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import NavSidebar from "../components/NavigationSidebar/NavSidebar";
 import Footer from "../components/Footer/Footer";
-import { easeOut, motion } from "framer-motion";
 import LoadingSpinner from "../components/LoadingSpinner";
+
 export default function Nav({ children }) {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition =
-        window.scrollY || document.documentElement.scrollTop;
-      if (scrollPosition > 0 && isScrolled === false) {
-        setIsScrolled(true);
-      } else if (scrollPosition === 0) {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isScrolled]);
   return (
-    <motion.div
-      className="app-container f-poppins"
-      animate={{ y: [-180, 10, 0] }}
-      transition={{ duration: 0.3, ease: easeOut }}
-    >
+    <div className="app-container f-poppins">
       <Navbar
-        isScrolled={isScrolled}
         sidebarIsOpen={sidebarIsOpen}
         setSidebarIsOpen={setSidebarIsOpen}
       />
@@ -43,8 +22,7 @@ export default function Nav({ children }) {
       <Suspense fallback={<LoadingSpinner />}>
         {children}
       </Suspense>
-
       <Footer />
-    </motion.div>
+    </div>
   );
 }

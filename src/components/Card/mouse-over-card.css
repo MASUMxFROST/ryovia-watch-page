@@ -1,31 +1,38 @@
 .mouse-over-card-wrapper {
-  min-width: 400px;
   position: absolute;
-  top: 0%;
-  left: 70%;
-  z-index: 3;
-  background-color: rgba(53, 53, 53, 0.767);
-  backdrop-filter: blur(20px);
-  padding: 10px;
-  border-radius: 10px;
-  gap: 10px;
-  animation: fadeIn 350ms ease forwards;
-  opacity: 0;
+  right: 8px;
+  bottom: 95px;
+  left: 8px;
+  z-index: 4;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(15, 22, 18, 0.96);
+  color: #eef2ef;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
 }
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
+
+.mouse-over-card-wrapper strong {
+  display: block;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.mouse-over-card-wrapper p {
+  margin: 6px 0 8px;
+  color: #b1bdb5;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mouse-over-card-wrapper > span {
+  color: var(--theme);
+  font-size: 10px;
+}
+
+@media (hover: none) {
+  .mouse-over-card-wrapper {
+    display: none;
   }
-  100% {
-    opacity: 1;
-  }
-}
-.mouse-over-card-wrapper .anime-st {
-  justify-content: space-between;
-}
-.anime-st .type {
-  background-color: var(--theme);
-  border-radius: 5px;
-  color: black;
-  padding: 3px;
 }

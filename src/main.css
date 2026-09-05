@@ -21,8 +21,8 @@ body {
   font-family: "Trebuchet MS", sans-serif !important;
 }
 :root {
-  --grey-dark: #343a40;
-  --dark: #242428;
+  --grey-dark: #292d32;
+  --dark: #15171a;
   --height-small: 400px;
   --height-medium: 500px;
   --height-large: 610px;
@@ -51,7 +51,7 @@ body {
   transition: all 300ms ease-in-out;
 }
 .app-container {
-  max-width: 1980px;
+  max-width: 1600px;
   padding: 0 !important;
   margin: 0 auto;
   color: var(--light);
